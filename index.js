@@ -1,4 +1,4 @@
-//  Importações
+//  Imports
 const { DisTube } = require('distube')
 const Discord = require('discord.js')
 const client = new Discord.Client({
@@ -16,7 +16,7 @@ const { SoundCloudPlugin } = require('@distube/soundcloud')
 const { YtDlpPlugin } = require('@distube/yt-dlp')
 client.config = require('./config.json')
 
-//  Instanciando distube
+//  Distube instance
 client.distube = new DisTube(client, {
   leaveOnStop: false,
   emitNewSongOnly: true,
@@ -31,14 +31,17 @@ client.distube = new DisTube(client, {
   ]
 })
 
-//  Cirando listas de comandos e alias
+//  Creating lists of commands and aliases
 client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
 
-//  Importando lista de emotes
+//  Importing emotes
 client.emotes = config.emoji
 
-// Interpreta a lista de comandos
+// Import prefix
+const prefix = config.prefix
+
+// Instantiating commands
 fs.readdir('./commands/', (err, files) => {
   if (err) return console.log('Não foi encontrado nenhum comando!')
   const jsFiles = files.filter(f => f.split('.').pop() === 'js')
@@ -51,39 +54,39 @@ fs.readdir('./commands/', (err, files) => {
   })
 })
 
-// Cria uma aviso no log quando o bot está pronto
+// Warns in the log when the bot is ready
 client.on('ready', () => {
   console.log(`${client.user.tag} online!`)
 })
 
-// Verificador de comandos
+// Commands verifier
 client.on('messageCreate', async message => {
-  // Verifica se é uma mensagem de servidor e enviada por usuário
+  // Check the source of the message
   if (message.author.bot || !message.guild) return
 
-  // Carrega o prefixo dos comandos e verifica
-  const prefix = config.prefix
+  // Check prefix
   if (!message.content.startsWith(prefix)) return
 
-  // Separa os argumentos do comando
+  // Slice command args
   const args = message.content.slice(prefix.length).trim().split(/ +/g)
-  // Separa o comando do prefixo e args
+  
+  // Get command 
   const command = args.shift().toLowerCase()
 
-  // Gerar a instancia do comando a partir da string
+  // Instance command
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command))
 
-  // Verifica se é um comando válido
+  // Check if command is valid
   if (!cmd) {
     message.reply(`${client.emotes.error} | Digite um comando válido!`)
     return
   }
-  // Verifica se o comando necessita de um canal de voz e se o usuário está em um
+  // Check if command need a voice channel
   if (cmd.inVoiceChannel && !message.member.voice.channel) {
     return message.channel.send(`${client.emotes.error} | Você deve estar em um canal de voz!`)
   }
 
-  // Roda o comando e/ou retorna eventuais erros
+  // Run command (or return errors)
   try {
     await cmd.run(client, message, args)
   } catch (e) {
@@ -92,13 +95,13 @@ client.on('messageCreate', async message => {
   }
 })
 
-// Status da queue (Fila de músicas)
+// Queue stats
 const status = queue =>
   `Volume: \`${queue.volume}%\` | Filtro(s): \`${queue.filters.names.join(', ') || 'Desligado'}\` | Loop: \`${
     queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Desligado'
   }\` | Autoplay: \`${queue.autoplay ? 'Ligado' : 'Desligado'}\``
 
-// Configuração das mensagens retornadas nos comandos de música
+// Messages config
 client.distube
   .on('playSong', (queue, song) =>
     queue.textChannel.send(
@@ -145,5 +148,5 @@ client.distube
 // )
 // .on("searchDone", () => {})
 
-// Inicia o bot
+// Run the bot
 client.login(config.token)
