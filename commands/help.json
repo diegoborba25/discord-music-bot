@@ -1,0 +1,102 @@
+{
+  "autoplay": {
+    "summary" : "Liga ou desliga a continuação automática da fila atual",
+    "description" : "description"
+  }, 
+  "filter": {
+    "summary" : "Lista ou adiciona filtros de áudio na reprodução",
+    "description" : "description"
+  }, 
+  "forward": {
+    "summary" : "Avança a reprodução",
+    "description" : "description"
+  }, 
+  "help": {
+    "summary" : "Concede informações sobre os comandos do bot",
+    "description" : "description"
+  }, 
+  "join": {
+    "summary" : "Entra no canal de voz em que o usuário se encontra atualmente",
+    "description" : "description"
+  }, 
+  "leave": {
+    "summary" : "Deixa o canal de voz atual",
+    "description" : "description"
+  }, 
+  "nowplaying": {
+    "summary" : "Lista o que está atualmente em reprodução",
+    "description" : "description"
+  }, 
+  "pause": {
+    "summary" : "Pausa ou resume a reprodução atual caso já esteja pausada",
+    "description" : "description"
+  }, 
+  "ping": {
+    "summary" : "Fornece as informações de latência do bot",
+    "description" : "description"
+  }, 
+  "play": {
+    "summary" : "Reproduz áudio ou adiciona ele na fila",
+    "description" : "description"
+  }, 
+  "playskip": {
+    "summary" : "Reproduz áudio automaticamente pulando o que está em reprodução atualmente",
+    "description" : "description"
+  }, 
+  "playtop": {
+    "summary" : "Adiciona o áudio na primeira posição da fila",
+    "description" : "description"
+  }, 
+  "previous": {
+    "summary" : "Reproduz o áudio que tocou anteriormente na fila",
+    "description" : "description"
+  }, 
+  "queue": {
+    "summary" : "Lista a fila atual",
+    "description" : "description"
+  }, 
+  "repeat": {
+    "summary" : "Liga ou desliga o loop da fila atual",
+    "description" : "description"
+  }, 
+  "resume": {
+    "summary" : "Resume a reprodução atual se estiver pausada",
+    "description" : "description"
+  }, 
+  "rewind": {
+    "summary" : "Rebobina a reprodução",
+    "description" : "description"
+  }, 
+  "rfilter": {
+    "summary" : "Remove todos os filtros aplicados na reprodução",
+    "description" : "description"
+  }, 
+  "seek": {
+    "summary" : "Ajusta a reprodução para o segundo desejado",
+    "description" : "description"
+  }, 
+  "shuffle": {
+    "summary" : "Embaralha a fila atual",
+    "description" : "description"
+  }, 
+  "skip": {
+    "summary" : "Pula a reprodução atual",
+    "description" : "description"
+  }, 
+  "skipto": {
+    "summary" : "Pula a reprodução especificamente para alguma opção da lista atual",
+    "description" : "description"
+  }, 
+  "stop": {
+    "summary" : "Para a reprodução",
+    "description" : "description"
+  }, 
+  "volume": {
+    "summary" : "Ajusta o volume de reprodução",
+    "description" : "description"
+  },
+  "pix": {
+    "summary" : "Passa o pix do Dev para você apoiar o projeto",
+    "description" : "description"
+  }
+}

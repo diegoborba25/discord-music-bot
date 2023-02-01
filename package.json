@@ -1,0 +1,46 @@
+{
+  "name": "your-bot-name-here",
+  "version": "1.0.0",
+  "description": "Discord bot.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "p": "prettier . --write"
+  },
+  "author": "Diego Borba",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/opus": "^0.8.0",
+    "@discordjs/voice": "^0.11.0",
+    "@distube/soundcloud": "^1.2.1",
+    "@distube/spotify": "^1.3.2",
+    "@distube/yt-dlp": "^1.1.3",
+    "discord.js": "^14.0.3",
+    "distube": "^4.0.2",
+    "eslint-config-prettier": "^8.5.0",
+    "ffmpeg-static": "^4.4.1",
+    "libsodium-wrappers": "^0.7.10",
+    "npm": "^9.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "husky": "^8.0.1",
+    "nano-staged": "^0.8.0",
+    "prettier": "^2.7.1"
+  },
+  "nano-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,yml,yaml,md}": [
+      "prettier --write"
+    ]
+  }
+}
