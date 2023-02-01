@@ -108,3 +108,5 @@ dist
 .yarn/
 yarn.lock
 README.txt
+config.json
+package.json
