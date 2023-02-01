@@ -3,6 +3,7 @@ const { EmbedBuilder } = require('discord.js')
 const commandName = 'help'
 const aliasesList = require('./aliases.json')
 const commandsHelp = require('./help.json')
+const config = require('./../config.json')
 
 module.exports = {
   name: commandName,
@@ -19,7 +20,7 @@ module.exports = {
           new EmbedBuilder()
             .setTitle('Comandos:')
             .setColor('Blue')
-            .setDescription(`${description}\nDigite your-prefix-here!help \`<Comando>\` para mais informações!`)
+            .setDescription(`${description}\nDigite ${config.prefix}help \`<Comando>\` para mais informações!`)
         ]
       })
     } else {
