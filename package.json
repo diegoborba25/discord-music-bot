@@ -1,6 +1,6 @@
 {
-  "name": "your-bot-name-here",
-  "version": "1.0.0",
+  "name": "discord-music-bot",
+  "version": "1.0.1",
   "description": "Discord bot.",
   "main": "index.js",
   "scripts": {

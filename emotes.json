@@ -1,12 +1,8 @@
 {
-  "prefix": "your-prefix-here",
-  "token": "your-token-here",
-  "emoji": {
     "play": "▶️",
     "stop": "⏹️",
     "queue": "📄",
     "success": "☑️",
     "repeat": "🔁",
     "error": "❌"
-  }
 }

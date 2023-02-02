@@ -14,7 +14,11 @@ const { SpotifyPlugin } = require('@distube/spotify')
 const { SoundCloudPlugin } = require('@distube/soundcloud')
 const { YtDlpPlugin } = require('@distube/yt-dlp')
 
+//  Importing configurations
 client.config = require('./config.json')
+
+//  Importing emotes
+client.emotes = require('./emotes.json')
 
 //  Distube instance
 client.distube = new DisTube(client, {
@@ -34,9 +38,6 @@ client.distube = new DisTube(client, {
 //  Creating lists of commands and aliases
 client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
-
-//  Importing emotes
-client.emotes = client.config.emoji
 
 // Import prefix
 const prefix = client.config.prefix
