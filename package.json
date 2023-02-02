@@ -42,5 +42,16 @@
     "*.{json,yml,yaml,md}": [
       "prettier --write"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegoborba25/Discord-Music-Bot.git"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "bugs": {
+    "url": "https://github.com/diegoborba25/Discord-Music-Bot/issues"
+  },
+  "homepage": "https://github.com/diegoborba25/Discord-Music-Bot#readme"
 }
