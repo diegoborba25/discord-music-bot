@@ -10,10 +10,10 @@ const client = new Discord.Client({
   ]
 })
 const fs = require('fs')
-const config = require('./config.json')
 const { SpotifyPlugin } = require('@distube/spotify')
 const { SoundCloudPlugin } = require('@distube/soundcloud')
 const { YtDlpPlugin } = require('@distube/yt-dlp')
+
 client.config = require('./config.json')
 
 //  Distube instance
@@ -36,10 +36,10 @@ client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
 
 //  Importing emotes
-client.emotes = config.emoji
+client.emotes = client.config.emoji
 
 // Import prefix
-const prefix = config.prefix
+const prefix = client.config.prefix
 
 // Instantiating commands
 fs.readdir('./commands/', (err, files) => {
@@ -149,4 +149,4 @@ client.distube
 // .on("searchDone", () => {})
 
 // Run the bot
-client.login(config.token)
+client.login(client.config.token)
