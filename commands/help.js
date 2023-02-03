@@ -1,19 +1,20 @@
 const { EmbedBuilder } = require('discord.js')
+const config = require('./../config.json')
 
 const commandName = 'help'
-const aliasesList = require('./aliases.json')
-const commandsHelp = require('./help.json')
-const config = require('./../config.json')
+const commandsInfo = require('./commands-info.json')
+const commandInfo = commandsInfo[commandName]
+const commandaliases = commandInfo.aliases
 
 module.exports = {
   name: commandName,
-  aliases: aliasesList[commandName],
+  aliases: commandaliases,
   run: async (client, message, args) => {
     if (!args[0]) {
       const description = client.commands.map(function (cmd) {
         const cmdName = cmd.name
-        const commandHelp = commandsHelp[cmdName]
-        return `\`${cmdName}\`** - ${commandHelp.summary}**\nAlternativas: *${aliasesList[cmdName].map(alias => alias).join(', ')}*\n`
+        const cmdInfo = commandsInfo[cmdName]
+        return `\`${cmdName}\`** - ${cmdInfo.summary}**\nAlternativas: *${cmdInfo.aliases.map(alias => alias).join(', ')}*\n`
       }).join('')
       message.channel.send({
         embeds: [
@@ -24,8 +25,7 @@ module.exports = {
         ]
       })
     } else {
-      const commandHelp = commandsHelp[args[0]]
-      message.channel.send(commandHelp.description)
+      message.channel.send(commandInfo.description)
     }
   }
 }

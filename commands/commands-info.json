@@ -1,0 +1,208 @@
+{
+  "autoplay": {
+    "aliases": [
+      "ap"
+    ],
+    "summary": "Liga ou desliga a continuação automática da fila atual",
+    "description": "description"
+  },
+  "filter": {
+    "aliases": [
+      "filters",
+      "filtro",
+      "filtros"
+    ],
+    "summary": "Lista ou adiciona filtros de áudio na reprodução",
+    "description": "description"
+  },
+  "forward": {
+    "aliases": [
+      "avançar"
+    ],
+    "summary": "Avança a reprodução",
+    "description": "description"
+  },
+  "help": {
+    "aliases": [
+      "h",
+      "cmd",
+      "command",
+      "comandos"
+    ],
+    "summary": "Concede informações sobre os comandos do bot",
+    "description": "description"
+  },
+  "join": {
+    "aliases": [
+      "move",
+      "entrar"
+    ],
+    "summary": "Entra no canal de voz em que o usuário se encontra atualmente",
+    "description": "description"
+  },
+  "leave": {
+    "aliases": [
+      "sair",
+      "disconnect"
+    ],
+    "summary": "Deixa o canal de voz atual",
+    "description": "description"
+  },
+  "nowplaying": {
+    "aliases": [
+      "np",
+      "tocando"
+    ],
+    "summary": "Lista o que está atualmente em reprodução",
+    "description": "description"
+  },
+  "pause": {
+    "aliases": [
+      "pause",
+      "hold",
+      "pausar"
+    ],
+    "summary": "Pausa ou resume a reprodução atual caso já esteja pausada",
+    "description": "description"
+  },
+  "ping": {
+    "aliases": [
+      "png"
+    ],
+    "summary": "Fornece as informações de latência do bot",
+    "description": "description"
+  },
+  "play": {
+    "aliases": [
+      "p",
+      "tocar"
+    ],
+    "summary": "Reproduz áudio ou adiciona ele na fila",
+    "description": "description"
+  },
+  "playskip": {
+    "aliases": [
+      "ps"
+    ],
+    "summary": "Reproduz áudio automaticamente pulando o que está em reprodução atualmente",
+    "description": "description"
+  },
+  "playtop": {
+    "aliases": [
+      "pt"
+    ],
+    "summary": "Adiciona o áudio na primeira posição da fila",
+    "description": "description"
+  },
+  "previous": {
+    "aliases": [
+      "pvs"
+    ],
+    "summary": "Reproduz o áudio que tocou anteriormente na fila",
+    "description": "description"
+  },
+  "queue": {
+    "aliases": [
+      "q",
+      "fila"
+    ],
+    "summary": "Lista a fila atual",
+    "description": "description"
+  },
+  "repeat": {
+    "aliases": [
+      "loop",
+      "rp",
+      "repetir"
+    ],
+    "summary": "Liga ou desliga o loop da fila atual",
+    "description": "description"
+  },
+  "resume": {
+    "aliases": [
+      "resume",
+      "unpause",
+      "resumir",
+      "despausar"
+    ],
+    "summary": "Resume a reprodução atual se estiver pausada",
+    "description": "description"
+  },
+  "rewind": {
+    "aliases": [
+      "voltar"
+    ],
+    "summary": "Rebobina a reprodução",
+    "description": "description"
+  },
+  "rfilter": {
+    "aliases": [
+      "rfilters",
+      "rfiltro",
+      "rfiltros"
+    ],
+    "summary": "Remove todos os filtros aplicados na reprodução",
+    "description": "description"
+  },
+  "seek": {
+    "aliases": [
+      "sk"
+    ],
+    "summary": "Ajusta a reprodução para o segundo desejado",
+    "description": "description"
+  },
+  "shuffle": {
+    "aliases": [
+      "sfl"
+    ],
+    "summary": "Embaralha a fila atual",
+    "description": "description"
+  },
+  "skip": {
+    "aliases": [
+      "skp"
+    ],
+    "summary": "Pula a reprodução atual",
+    "description": "description"
+  },
+  "skipto": {
+    "aliases": [
+      "skpto"
+    ],
+    "summary": "Pula a reprodução especificamente para alguma opção da lista atual",
+    "description": "description"
+  },
+  "stop": {
+    "aliases": [
+      "parar"
+    ],
+    "summary": "Para a reprodução",
+    "description": "description"
+  },
+  "volume": {
+    "aliases": [
+      "v",
+      "set",
+      "set-volume"
+    ],
+    "summary": "Ajusta o volume de reprodução",
+    "description": "description"
+  },
+  "pix": {
+    "aliases": [
+      "donate",
+      "doar",
+      "pay"
+    ],
+    "summary": "Passa o pix do Dev para você apoiar o projeto",
+    "description": "description"
+  },
+  "language": {
+    "aliases": [
+      "lang",
+      "idioma"
+    ],
+    "summary": "Altera o idioma proferido pelo bot",
+    "description": "description"
+  }
+}

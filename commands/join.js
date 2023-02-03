@@ -1,11 +1,13 @@
 const { Constants } = require('discord.js')
 
 const commandName = 'join'
-const aliasesList = require('./aliases.json')
+const commandsInfo = require('./commands-info.json')
+const commandInfo = commandsInfo[commandName]
+const commandaliases = commandInfo.aliases
 
 module.exports = {
   name: commandName,
-  aliases: aliasesList[commandName],
+  aliases: commandaliases,
   run: async (client, message, args) => {
     let voiceChannel = message.member.voice.channel
     if (args[0]) {

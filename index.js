@@ -1,6 +1,13 @@
 //  Imports
 const { DisTube } = require('distube')
 const Discord = require('discord.js')
+const { SpotifyPlugin } = require('@distube/spotify')
+const { SoundCloudPlugin } = require('@distube/soundcloud')
+const { YtDlpPlugin } = require('@distube/yt-dlp')
+
+const fs = require('fs')
+
+// Instantiating client
 const client = new Discord.Client({
   intents: [
     Discord.GatewayIntentBits.Guilds,
@@ -9,10 +16,6 @@ const client = new Discord.Client({
     Discord.GatewayIntentBits.MessageContent
   ]
 })
-const fs = require('fs')
-const { SpotifyPlugin } = require('@distube/spotify')
-const { SoundCloudPlugin } = require('@distube/soundcloud')
-const { YtDlpPlugin } = require('@distube/yt-dlp')
 
 //  Importing configurations
 client.config = require('./config.json')
@@ -70,7 +73,7 @@ client.on('messageCreate', async message => {
 
   // Slice command args
   const args = message.content.slice(prefix.length).trim().split(/ +/g)
-  
+
   // Get command 
   const command = args.shift().toLowerCase()
 
@@ -98,16 +101,14 @@ client.on('messageCreate', async message => {
 
 // Queue stats
 const status = queue =>
-  `Volume: \`${queue.volume}%\` | Filtro(s): \`${queue.filters.names.join(', ') || 'Desligado'}\` | Loop: \`${
-    queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Desligado'
+  `Volume: \`${queue.volume}%\` | Filtro(s): \`${queue.filters.names.join(', ') || 'Desligado'}\` | Loop: \`${queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Desligado'
   }\` | Autoplay: \`${queue.autoplay ? 'Ligado' : 'Desligado'}\``
 
 // Messages config
 client.distube
   .on('playSong', (queue, song) =>
     queue.textChannel.send(
-      `${client.emotes.play} | Tocando: \`${song.name}\` - \`${song.formattedDuration}\`\nAdicionado por: ${
-        song.user
+      `${client.emotes.play} | Tocando: \`${song.name}\` - \`${song.formattedDuration}\`\nAdicionado por: ${song.user
       }\n${status(queue)}`
     )
   )
@@ -118,8 +119,7 @@ client.distube
   )
   .on('addList', (queue, playlist) =>
     queue.textChannel.send(
-      `${client.emotes.success} | Adicionado: \`${playlist.name}\` playlist (${
-        playlist.songs.length
+      `${client.emotes.success} | Adicionado: \`${playlist.name}\` playlist (${playlist.songs.length
       } músicas) na fila\n${status(queue)}`
     )
   )

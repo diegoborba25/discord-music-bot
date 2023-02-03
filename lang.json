@@ -1,0 +1,12 @@
+{
+    "languages": [
+        "en-us",
+        "pt-br"
+    ],
+    "messages": {
+        "NO_COMMAND_FOUND": {
+            "en-us": "No command found!",
+            "pt-br": "Nenhum comando encontrado!"
+        }
+    }
+}
