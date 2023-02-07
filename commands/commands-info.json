@@ -40,6 +40,14 @@
     "summary": "Entra no canal de voz em que o usuário se encontra atualmente",
     "description": "description"
   },
+  "language": {
+    "aliases": [
+      "lang",
+      "idioma"
+    ],
+    "summary": "Altera o idioma proferido pelo bot",
+    "description": "description"
+  },
   "leave": {
     "aliases": [
       "sair",
@@ -195,14 +203,6 @@
       "pay"
     ],
     "summary": "Passa o pix do Dev para você apoiar o projeto",
-    "description": "description"
-  },
-  "language": {
-    "aliases": [
-      "lang",
-      "idioma"
-    ],
-    "summary": "Altera o idioma proferido pelo bot",
     "description": "description"
   }
 }
