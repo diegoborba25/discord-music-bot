@@ -3,7 +3,7 @@ const  { mongoPath } = require('./config.json')
 
 module.exports = async () => {
     mongoose.set("strictQuery", true);
-    mongoose.connect(mongoPath, {
+    await mongoose.connect(mongoPath, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
