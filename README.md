@@ -12,6 +12,7 @@ You must create "Config.js" to your application work.
 ```
 {
     "prefix": "your-prefix-here",
-    "token": "your-token-here"
+    "token": "your-token-here",
+    "mongoPath": "your-mongo-link-here"
 }
 ```
