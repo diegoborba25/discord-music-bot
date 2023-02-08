@@ -1,25 +1,27 @@
 const { Constants } = require('discord.js')
-
-const commandName = 'join'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError } = require('../language')
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'join',
+  aliases: [
+    "enter",
+  ],
   run: async (client, message, args) => {
     let voiceChannel = message.member.voice.channel
+    const { guild } = message
+
     if (args[0]) {
-      voiceChannel = await client.channels.fetch(args[0])
-      if (!Constants.VoiceBasedChannelTypes.includes(voiceChannel?.type)) {
-        return message.channel.send(`${client.emotes.error} | ${args[0]} não é um canal de voz válido!`)
+      try {
+        voiceChannel = await client.channels.fetch(args[0])
+        if (!Constants.VoiceBasedChannelTypes.includes(voiceChannel?.type)) {
+          return message.channel.send(getError(guild, "NOT_VALID_VOICE_CHANNEL", args[0]))
+        }
+      } catch (e) {
+        return message.channel.send(getError(guild, "NOT_VALID_VOICE_CHANNEL", args[0]))
       }
     }
     if (!voiceChannel) {
-      return message.channel.send(
-        `${client.emotes.error} | Você deve estar em um canal de voz ou enviar o id de um!`
-      )
+      return message.channel.send(getError(guild, "IN_VOICE_CHANNEL_OR_ID"))
     }
     client.distube.voices.join(voiceChannel)
   }

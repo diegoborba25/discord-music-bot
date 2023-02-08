@@ -1,16 +1,19 @@
-const commandName = 'autoplay'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError, getResourceProperty, getResources } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'autoplay',
+  aliases: [
+    "ap"
+  ],
   inVoiceChannel: true,
   run: async (client, message) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(message.guild, "EMPTY_QUEUE"))
     const autoplay = queue.toggleAutoplay()
-    message.channel.send(`${client.emotes.success} | AutoPlay: \`${autoplay ? 'Ligado' : 'Desligado'}\``)
+
+    statesResource = getResources(guild, "STATES")
+    message.channel.send(`${getResourceProperty(guild, "QUEUE", "autoplay", client.emotes.success)} \`${autoplay ? statesResource.on : statesResource.off}\``)
   }
 }

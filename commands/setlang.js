@@ -1,28 +1,23 @@
-const commandName = 'language'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
-
 const mongo = require('../mongo')
 const languageSchema = require('../schemas/language-schema')
-const { languages } = require('../lang.json')
-const { setLanguage, getLang } = require('../language')
+const { languages } = require('../language.json')
+const { setLanguage, getError, getMessage } = require('../language')
 
 module.exports = {
-    name: commandName,
-    aliases: commandaliases,
+    name: 'setlang',
+    aliases: [
+        "lang",
+        "language"
+    ],
     run: async (client, message, args) => {
         const { guild } = message
         const arg = args[0];
-        
-        if(!arg) return message.reply(`Lang: ${getLang()}`)
+
+        if (!arg) return message.reply(getMessage(guild, "CURRENT_LANGUAGE"))
 
         const targetLanguage = arg.toLowerCase()
-        if (!languages.includes(targetLanguage)) {
-            message.reply('That language is not supported.')
-            return
-        }
-
+        if (!languages.includes(targetLanguage)) return message.reply(getError(guild, "LANGUAGE_NOT_SUPPORTED"))
+            
         setLanguage(guild, targetLanguage)
 
         await mongo().then(async (mongoose) => {
@@ -35,7 +30,7 @@ module.exports = {
                 }, {
                     upsert: true
                 })
-                message.reply('Language set!')
+                message.reply(getMessage(guild, "LANGUAGE_SET"))
             } finally {
                 mongoose.connection.close()
             }

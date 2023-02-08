@@ -1,0 +1,490 @@
+{
+    "languages": [
+        "english",
+        "portuguese"
+    ],
+    "commands": {
+        "autoplay": {
+            "english": {
+                "summary": "Liga ou desliga a continuação automática da fila atual",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Liga ou desliga a continuação automática da fila atual",
+                "description": "descrição"
+            }
+        },
+        "filter": {
+            "english": {
+                "summary": "Lista ou adiciona filtros de áudio na reprodução",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Lista ou adiciona filtros de áudio na reprodução",
+                "description": "descrição"
+            }
+        },
+        "forward": {
+            "english": {
+                "summary": "Avança a reprodução",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Avança a reprodução",
+                "description": "descrição"
+            }
+        },
+        "help": {
+            "english": {
+                "summary": "Concede informações sobre os comandos do bot",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Concede informações sobre os comandos do bot",
+                "description": "descrição"
+            }
+        },
+        "join": {
+            "english": {
+                "summary": "Entra no canal de voz em que o usuário se encontra atualmente",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Entra no canal de voz em que o usuário se encontra atualmente",
+                "description": "descrição"
+            }
+        },
+        "leave": {
+            "english": {
+                "summary": "Deixa o canal de voz atual",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Deixa o canal de voz atual",
+                "description": "descrição"
+            }
+        },
+        "nowplaying": {
+            "english": {
+                "summary": "Lista o que está atualmente em reprodução",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Lista o que está atualmente em reprodução",
+                "description": "descrição"
+            }
+        },
+        "pause": {
+            "english": {
+                "summary": "Pausa ou resume a reprodução atual caso já esteja pausada",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Pausa ou resume a reprodução atual caso já esteja pausada",
+                "description": "descrição"
+            }
+        },
+        "play": {
+            "english": {
+                "summary": "Reproduz áudio ou adiciona ele na fila",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Reproduz áudio ou adiciona ele na fila",
+                "description": "descrição"
+            }
+        },
+        "playskip": {
+            "english": {
+                "summary": "Reproduz áudio automaticamente pulando o que está em reprodução atualmente",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Reproduz áudio automaticamente pulando o que está em reprodução atualmente",
+                "description": "descrição"
+            }
+        },
+        "playtop": {
+            "english": {
+                "summary": "Adiciona o áudio na primeira posição da fila",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Adiciona o áudio na primeira posição da fila",
+                "description": "descrição"
+            }
+        },
+        "previous": {
+            "english": {
+                "summary": "Reproduz o áudio que tocou anteriormente na fila",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Reproduz o áudio que tocou anteriormente na fila",
+                "description": "descrição"
+            }
+        },
+        "queue": {
+            "english": {
+                "summary": "Lista a fila atual",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Lista a fila atual",
+                "description": "descrição"
+            }
+        },
+        "loop": {
+            "english": {
+                "summary": "Liga ou desliga o loop da fila atual",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Liga ou desliga o loop da fila atual",
+                "description": "descrição"
+            }
+        },
+        "resume": {
+            "english": {
+                "summary": "Resume a reprodução atual se estiver pausada",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Resume a reprodução atual se estiver pausada",
+                "description": "descrição"
+            }
+        },
+        "rewind": {
+            "english": {
+                "summary": "Rebobina a reprodução",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Rebobina a reprodução",
+                "description": "descrição"
+            }
+        },
+        "rfilter": {
+            "english": {
+                "summary": "Remove todos os filtros aplicados na reprodução",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Remove todos os filtros aplicados na reprodução",
+                "description": "descrição"
+            }
+        },
+        "seek": {
+            "english": {
+                "summary": "Ajusta a reprodução para o segundo desejado",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Ajusta a reprodução para o segundo desejado",
+                "description": "descrição"
+            }
+        },
+        "setlang": {
+            "english": {
+                "summary": "Altera o idioma proferido pelo bot",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Altera o idioma proferido pelo bot",
+                "description": "descrição"
+            }
+        },
+        "shuffle": {
+            "english": {
+                "summary": "Embaralha a fila atual",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Embaralha a fila atual",
+                "description": "descrição"
+            }
+        },
+        "skip": {
+            "english": {
+                "summary": "Pula a reprodução atual",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Pula a reprodução atual",
+                "description": "descrição"
+            }
+        },
+        "skipto": {
+            "english": {
+                "summary": "Pula a reprodução especificamente para alguma opção da lista atual",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Pula a reprodução especificamente para alguma opção da lista atual",
+                "description": "descrição"
+            }
+        },
+        "stop": {
+            "english": {
+                "summary": "Para a reprodução",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Para a reprodução",
+                "description": "descrição"
+            }
+        },
+        "volume": {
+            "english": {
+                "summary": "Ajusta o volume de reprodução",
+                "description": "description"
+            },
+            "portuguese": {
+                "summary": "Ajusta o volume de reprodução",
+                "description": "descrição"
+            }
+        }
+    },
+    "messages": {
+        "ON": {
+            "english": "On",
+            "portuguese": "Ligado"
+        },
+        "OFF": {
+            "english": "Off",
+            "portuguese": "Desligado"
+        },
+        "PAUSED": {
+            "english": "Song paused!",
+            "portuguese": "Música pausada!"
+        },
+        "RESUMED": {
+            "english": "Song resumed!",
+            "portuguese": "Música despausada!"
+        },
+        "PLAYING": {
+            "english": "Playing:",
+            "portuguese": "Tocando:"
+        },
+        "ADDED": {
+            "english": "Added:",
+            "portuguese": "Adicionado:"
+        },
+        "ADDED_BY": {
+            "english": "Added by:",
+            "portuguese": "Adicionado por:"
+        },
+        "ADDED_TO_QUEUE": {
+            "english": "Added to queue:",
+            "portuguese": "Adicionado na fila:"
+        },
+        "ENDED_QUEUE": {
+            "english": "Queue ended!",
+            "portuguese": "Fila finalizada!"
+        },
+        "SONGS_IN_QUEUE": {
+            "english": "songs) in queue",
+            "portuguese": "músicas) na fila"
+        },
+        "VOICE_CHANNEL_EMPTY": {
+            "english": "Voice channel is empty!",
+            "portuguese": "O canal de voz está vazio!"
+        },
+        "LANGUAGE_SET": {
+            "english": "Language set!",
+            "portuguese": "Idioma alterado!"
+        },
+        "LOOP_MODE_CHANGED": {
+            "english": "Loop mode changed to:",
+            "portuguese": "Modo de repetição alterado para:"
+        },
+        "VOLUME_CHANGED_TO": {
+            "english": "Volume changed to:",
+            "portuguese": "Volume alterado para:"
+        },
+        "STOPED_QUEUE": {
+            "english": "Queue stoped!",
+            "portuguese": "Fila interrompida!"
+        },
+        "SONGS_SHUFFLED": {
+            "english": "Songs shuffled!",
+            "portuguese": "Músicas embaralhadas!"
+        },
+        "SERVER_QUEUE": {
+            "english": "**Server queue**",
+            "portuguese": "**Fila do servidor**"
+        },
+        "SKIPPED_TO": {
+            "english": "Skipped to:",
+            "portuguese": "Skipado para:"
+        },
+        "SKIPPED_BY": {
+            "english": "Skipped by:",
+            "portuguese": "Skipado por:"
+        },
+        "SEEKED_TO": {
+            "english": "Seeked to:",
+            "portuguese": "Música ajustada para o segundo:"
+        },
+        "ALTERNATIVES": {
+            "english": "Alternatives:",
+            "portuguese": "Alternativas:"
+        },
+        "COMMANDS": {
+            "english": "Commands:",
+            "portuguese": "Comandos:"
+        },
+        "CURRENT_LANGUAGE":{
+            "english": "Current language: `English`",
+            "portuguese": "Idioma atual: `Português`"
+        }
+    },
+    "resources": {
+        "QUEUE": {
+            "english": {
+                "volume": "Volume:",
+                "filters": "Filter(s):",
+                "loop": "Loop:",
+                "autoplay": "Autoplay:"
+            },
+            "portuguese": {
+                "volume": "Volume:",
+                "filters": "Filtro(s):",
+                "loop": "Loop:",
+                "autoplay": "Autoplay:"
+            }
+        },
+        "LOOP_MODES": {
+            "english": {
+                "allQueue": "Queue",
+                "thisSong": "Song"
+            },
+            "portuguese": {
+                "allQueue": "Fila",
+                "thisSong": "Música"
+            }
+        },
+        "STATES": {
+            "english": {
+                "on": "On",
+                "off": "Off"
+            },
+            "portuguese": {
+                "on": "Ligado",
+                "off": "Desligado"
+            }
+        },
+        "ACTIVE_FILTER": {
+            "english": {
+                "singular": "Filter",
+                "plural": "Filters"
+            },
+            "portuguese": {
+                "singular": "Filtro",
+                "plural": "Filtros"
+            }
+        },
+        "HELP_DESC": {
+            "english": [
+                "Enter",
+                "help `<Command>` to more information"
+            ],
+            "portuguese": [
+                "Digite",
+                "help `<Comando>` para mais informações!"
+            ]
+        },
+        "SONG_FORWARDED": {
+            "english": [
+                "Forwarded the song for",
+                "seconds!"
+            ],
+            "portuguese": [
+                "Música avançada em",
+                "segundos!"
+            ]
+        },
+        "SONG_REWINDED": {
+            "english": [
+                "Rewinded the song for",
+                "seconds!"
+            ],
+            "portuguese": [
+                "Música rebobinada em",
+                "segundos!"
+            ]
+        },
+        "SONG_REWINDED_ERROR": {
+            "english": [
+                "Number greater than the current playing time",
+                "seconds)!"
+            ],
+            "portuguese": [
+                "Número maior que o tempo atual da reprodução (",
+                "segundos)!"
+            ]
+        }
+    },
+    "errors": {
+        "COMMAND_NOT_FOUND": {
+            "english": "Command not found!",
+            "portuguese": "Comando não encontrado!"
+        },
+        "EMPTY_QUEUE": {
+            "english": "Empty queue!",
+            "portuguese": "Fila vazia!"
+        },
+        "ERROR_OCCURRED": {
+            "english": "Error occurred:",
+            "portuguese": "Ocorreu um erro:"
+        },
+        "NO_RESULTS_FOUND": {
+            "english": "No results found to:",
+            "portuguese": "Nenhum resultado encontrado para:"
+        },
+        "IN_VOICE_CHANNEL": {
+            "english": "You must be in a voice channel!",
+            "portuguese": "Você deve estar em um canal de voz!"
+        },
+        "IN_VOICE_CHANNEL_OR_ID": {
+            "english": "You must be in a voice channel or enter a voice channel id!",
+            "portuguese": "Você deve estar em um canal de voz ou digitar o id de um!"
+        },
+        "LANGUAGE_NOT_SUPPORTED": {
+            "english": "That language is not supported.",
+            "portuguese": "Esse idioma não é suportado."
+        },
+        "ENTER_VALID_NUMBER": {
+            "english": "Enter a valid number!",
+            "portuguese": "Digite um número válido!"
+        },
+        "ENTER_VALID_FILTER": {
+            "english": "Enter a valid filter!",
+            "portuguese": "Digite um filtro válido!"
+        },
+        "ENTER_A_SONG": {
+            "english": "Enter a song url or query to search.",
+            "portuguese": "Digite a url ou o nome da música para pesquisa."
+        },
+        "QUEUE_NOT_PAUSED": {
+            "english": "The queue is not paused!",
+            "portuguese": "A fila não está pausada!"
+        },
+        "ENTER_POSITION": {
+            "english": "Enter the song position!",
+            "portuguese": "Digite a posição da música!"
+        },
+        "ENTER_TIME": {
+            "english": "Enter time (in seconds) to go rewind!",
+            "portuguese": "Digite o tempo (em segundos)!"
+        },
+        "NUMBER_GREATER_THAN_TIME": {
+            "english": "Enter time (in seconds)!",
+            "portuguese": "Digite o tempo (em segundos)!"
+        },
+        "NOT_VALID_VOICE_CHANNEL": {
+            "english": "is not a valid voice channel!",
+            "portuguese": "não é um canal de voz válido!"
+        }
+    }
+}

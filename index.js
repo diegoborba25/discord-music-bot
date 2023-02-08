@@ -5,6 +5,8 @@ const { SpotifyPlugin } = require('@distube/spotify')
 const { SoundCloudPlugin } = require('@distube/soundcloud')
 const { YtDlpPlugin } = require('@distube/yt-dlp')
 
+const { loadLanguages, getError, getMessage, getQueue } = require('./language')
+
 const fs = require('fs')
 
 // Instantiating client
@@ -25,6 +27,7 @@ client.emotes = require('./emotes.json')
 
 //  Distube instance
 client.distube = new DisTube(client, {
+  leaveOnEmpty: true,
   leaveOnStop: false,
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
@@ -47,12 +50,12 @@ const prefix = client.config.prefix
 
 // Instantiating commands
 fs.readdir('./commands/', (err, files) => {
-  if (err) return console.log('Não foi encontrado nenhum comando!')
+  if (err) return console.log('No command found')
   const jsFiles = files.filter(f => f.split('.').pop() === 'js')
-  if (jsFiles.length <= 0) return console.log('Não foi encontrado nenhum comando!')
+  if (jsFiles.length <= 0) return console.log('No command found')
   jsFiles.forEach(file => {
     const cmd = require(`./commands/${file}`)
-    console.log(`Comando carregado: ${file}`)
+    console.log(`Command loaded: ${file}`)
     client.commands.set(cmd.name, cmd)
     if (cmd.aliases) cmd.aliases.forEach(alias => client.aliases.set(alias, cmd.name))
   })
@@ -60,13 +63,16 @@ fs.readdir('./commands/', (err, files) => {
 
 // Warns in the log when the bot is ready
 client.on('ready', () => {
+  loadLanguages(client)
   console.log(`${client.user.tag} online!`)
 })
 
 // Commands verifier
 client.on('messageCreate', async message => {
+  const { guild } = message
+
   // Check the source of the message
-  if (message.author.bot || !message.guild) return
+  if (message.author.bot || !guild) return
 
   // Check prefix
   if (!message.content.startsWith(prefix)) return
@@ -82,12 +88,12 @@ client.on('messageCreate', async message => {
 
   // Check if command is valid
   if (!cmd) {
-    message.reply(`${client.emotes.error} | Digite um comando válido!`)
+    message.reply(getError(guild, "COMMAND_NOT_FOUND"))
     return
   }
   // Check if command need a voice channel
   if (cmd.inVoiceChannel && !message.member.voice.channel) {
-    return message.channel.send(`${client.emotes.error} | Você deve estar em um canal de voz!`)
+    return message.channel.send(getError(guild, "IN_VOICE_CHANNEL"))
   }
 
   // Run command (or return errors)
@@ -95,59 +101,56 @@ client.on('messageCreate', async message => {
     await cmd.run(client, message, args)
   } catch (e) {
     console.error(e)
-    message.channel.send(`${client.emotes.error} | Erro: \`${e}\``)
+    message.channel.send(`${getError(guild, "ERROR_OCCURRED")} \`${e}\``)
   }
 })
 
 // Queue stats
-const status = queue =>
-  `Volume: \`${queue.volume}%\` | Filtro(s): \`${queue.filters.names.join(', ') || 'Desligado'}\` | Loop: \`${queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Desligado'
-  }\` | Autoplay: \`${queue.autoplay ? 'Ligado' : 'Desligado'}\``
+const status = queue => getQueue(queue)
 
 // Messages config
 client.distube
-  .on('playSong', (queue, song) =>
+  .on('playSong', (queue, song) => {
+    const { guild } = queue.textChannel
     queue.textChannel.send(
-      `${client.emotes.play} | Tocando: \`${song.name}\` - \`${song.formattedDuration}\`\nAdicionado por: ${song.user
+      `${getMessage(guild, "PLAYING", client.emotes.play)} \`${song.name}\` - \`${song.formattedDuration}\`\n${getMessage(guild, "ADDED_BY")} ${song.user
       }\n${status(queue)}`
     )
-  )
-  .on('addSong', (queue, song) =>
-    queue.textChannel.send(
-      `${client.emotes.success} | Adicionado na fila: \`${song.name}\` - \`${song.formattedDuration}\`\nAdicionado por: ${song.user}`
-    )
-  )
-  .on('addList', (queue, playlist) =>
-    queue.textChannel.send(
-      `${client.emotes.success} | Adicionado: \`${playlist.name}\` playlist (${playlist.songs.length
-      } músicas) na fila\n${status(queue)}`
-    )
-  )
-  .on('error', (channel, e) => {
-    if (channel) channel.send(`${client.emotes.error} | Ocorreu um erro: ${e.toString().slice(0, 1974)}`)
-    else console.error(e)
   })
-  // .on('empty', channel => channel.send('O canal de voz está vazio! Valeu, falou!'))
+
+  .on('addSong', (queue, song) => {
+    const { guild } = queue.textChannel
+    queue.textChannel.send(
+      `${getMessage(guild, "ADDED_TO_QUEUE", client.emotes.success)} \`${song.name}\` - \`${song.formattedDuration}\`\n${getMessage(guild, "ADDED_BY")} ${song.user}`
+    )
+  })
+
+  .on('addList', (queue, playlist) => {
+    const { guild } = queue.textChannel
+    queue.textChannel.send(
+      `${getMessage(guild, "ADDED", client.emotes.success)} \`${playlist.name}\` playlist (${playlist.songs.length
+      } ${getMessage(guild, "SONGS_IN_QUEUE")}\n${status(queue)}`
+    )
+  })
+
+  // .on('error', (channel, e) => {
+  //   if (channel) channel.send(`${getError(guild, "ERROR_OCCURRED")} ${e.toString().slice(0, 1974)}`)
+  //   else console.error(e)
+  // })
+
+  .on('empty', queue => {
+    const { guild } = queue.textChannel
+    queue.textChannel.send(getMessage(guild, "VOICE_CHANNEL_EMPTY"))
+  })
+
   .on('searchNoResult', (message, query) =>
-    message.channel.send(`${client.emotes.error} | Nenhum resultado encontrado para: \`${query}\`!`)
+    message.channel.send(`${getError(message.guild, "NO_RESULTS_FOUND")} \`${query}\`!`)
   )
-  .on('finish', queue => queue.textChannel.send('Fila finalizada!'))
-// // DisTubeOptions.searchSongs = true
-// .on("searchResult", (message, result) => {
-//     let i = 0
-//     message.channel.send(
-//         `**Choose an option from below**\n${result
-//             .map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``)
-//             .join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`
-//     )
-// })
-// .on("searchCancel", message => message.channel.send(`${client.emotes.error} | Searching canceled`))
-// .on("searchInvalidAnswer", message =>
-//     message.channel.send(
-//         `${client.emotes.error} | Invalid answer! You have to enter the number in the range of the results`
-//     )
-// )
-// .on("searchDone", () => {})
+
+  .on('finish', (queue) => {
+    const { guild } = queue.textChannel
+    queue.textChannel.send(getMessage(guild, "ENDED_QUEUE"))
+  })
 
 // Run the bot
 client.login(client.config.token)

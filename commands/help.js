@@ -1,31 +1,37 @@
 const { EmbedBuilder } = require('discord.js')
 const config = require('./../config.json')
 
-const commandName = 'help'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getCommandInfo, getMessage, getResources } = require('../language')
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'help',
+  aliases: [
+    "h",
+    "cmds",
+    "commands"
+  ],
   run: async (client, message, args) => {
+    const { guild } = message
+
     if (!args[0]) {
       const description = client.commands.map(function (cmd) {
         const cmdName = cmd.name
-        const cmdInfo = commandsInfo[cmdName]
-        return `\`${cmdName}\`** - ${cmdInfo.summary}**\nAlternativas: *${cmdInfo.aliases.map(alias => alias).join(', ')}*\n`
+        const cmdInfo = getCommandInfo(guild, cmdName)
+        return `\`${cmdName}\`** - ${cmdInfo.summary}**\n${getMessage(guild, "ALTERNATIVES")} *${cmd.aliases.map(alias => alias).join(', ')}*\n`
       }).join('')
+
+      const descResource = getResources(guild, "HELP_DESC")
+
       message.channel.send({
         embeds: [
           new EmbedBuilder()
-            .setTitle('Comandos:')
+            .setTitle(getMessage(guild, "COMMANDS"))
             .setColor('Blue')
-            .setDescription(`${description}\nDigite ${config.prefix}help \`<Comando>\` para mais informações!`)
+            .setDescription(`${description}\n${descResource[0]} ${config.prefix}${descResource[1]}`)
         ]
       })
     } else {
-      message.channel.send(commandInfo.description)
+      message.channel.send(getCommandInfo(guild, args[0]).description)
     }
   }
 }

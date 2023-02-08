@@ -1,18 +1,23 @@
-const commandName = 'volume'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError, getMessage } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'volume',
+  aliases: [
+    "v",
+    "set",
+    "set-volume"
+  ],
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(guild, "EMPTY_QUEUE"))
     const volume = parseInt(args[0])
-    if (isNaN(volume)) return message.channel.send(`${client.emotes.error} | Coloque um número válido!`)
+
+    if (isNaN(volume)) return message.channel.send(getError(guild, "ENTER_VALID_NUMBER"))
     queue.setVolume(volume)
-    message.channel.send(`${client.emotes.success} | Volume alterado para: \`${volume}\``)
+
+    message.channel.send(`${getMessage(guild, "VOLUME_CHANGED_TO", client.emotes.success)} \`${volume}\``)
   }
 }

@@ -1,16 +1,18 @@
-const commandName = 'nowplaying'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getMessage, getError } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'nowplaying',
+  aliases: [
+    "np",
+    "tocando"
+  ],
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
+
+    if (!queue) return message.channel.send(getError(message.guild, "EMPTY_QUEUE"))
+
     const song = queue.songs[0]
-    message.channel.send(`${client.emotes.play} | Estou tocando: **\`${song.name}\`**, colocado por: ${song.user}`)
+    message.channel.send(`${getMessage(guild, "PLAYING", client.emotes.play)} **\`${song.name}\`**, ${getMessage(guild, "ADDED_BY")} ${song.user}`)
   }
 }

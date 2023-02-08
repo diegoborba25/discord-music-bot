@@ -1,20 +1,22 @@
-const commandName = 'previous'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError, getMessage } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'previous',
+  aliases: [
+    "pvs"
+  ],
   inVoiceChannel: true,
   run: async (client, message) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(guild, "EMPTY_QUEUE"))
+
     try {
-      queue.previous()
-      message.channel.send(`${client.emotes.success} | Retrocedido! Por: ${message.author}\n`)
+      const song = queue.previous()
+      message.channel.send(`${getMessage(guild, "PLAYING", client.emotes.success)} \`${song.name}\``)
     } catch (e) {
-      message.channel.send(`${client.emotes.error} | ${e}`)
+      message.channel.send(`${getError(guild, "ERROR_OCCURRED")} ${e}`)
     }
   }
 }

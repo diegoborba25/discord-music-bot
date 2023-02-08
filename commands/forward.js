@@ -1,21 +1,25 @@
-const commandName = 'forward'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError, getResources } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'forward',
+  aliases: [
+    "fwrd"
+  ],
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
-    if (!args[0]) {
-      return message.channel.send(`${client.emotes.error} | Coloque o tempo (em segundos)!`)
-    }
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(guild, "EMPTY_QUEUE"))
+
+    if (!args[0]) return message.channel.send(getError(guild, "ENTER_TIME"))
+
     const time = Number(args[0])
-    if (isNaN(time)) return message.channel.send(`${client.emotes.error} | Coloque um número válido!`)
+
+    if (isNaN(time)) return message.channel.send(getError(guild, "ENTER_VALID_NUMBER"))
+
+    const forwardResource = getResources(guild, "SONG_FORWARDED")
     queue.seek((queue.currentTime + time))
-    message.channel.send(`Música avançada em ${time} segundos!`)
+    message.channel.send(`${forwardResource[0]} ${time} ${forwardResource[1]}`)
   }
 }

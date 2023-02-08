@@ -1,13 +1,10 @@
-const commandName = 'rfilter'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
-
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'rfilter',
+  aliases: [
+    "rfilters"
+  ],
   inVoiceChannel: true,
-  run: async (client, message, args) => {
+  run: async (client, message) => {
     client.commands.get('filter').run(client, message, ['off'])
   }
 }

@@ -1,15 +1,17 @@
-const commandName = 'repeat'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError, getResources, getMessage } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'loop',
+  aliases: [
+    "repeat",
+    "rp"
+  ],
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(message.guild, "EMPTY_QUEUE"))
     let mode = null
     if (!args[0]) {
       if (queue.songs.length > 1) {
@@ -30,8 +32,11 @@ module.exports = {
           break
       }
     }
+
     mode = queue.setRepeatMode(mode)
-    mode = mode ? (mode === 2 ? 'Repetir fila' : 'Repetir música') : 'Desligado'
-    message.channel.send(`${client.emotes.repeat} | Modo de repetição alterado para: \`${mode}\``)
+
+    loopModeResources = getResources(guild, "LOOP_MODES")
+    mode = mode ? (mode === 2 ? loopModesResources.allQueue : loopModesResources.thisSong) : getMessage(guild, "OFF")
+    message.channel.send(`${getMessage(guild, "LOOP_MODE_CHANGED", client.emotes.repeat)} \`${mode}\``)
   }
 }

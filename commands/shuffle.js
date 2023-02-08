@@ -1,16 +1,18 @@
-const commandName = 'shuffle'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getMessage, getError } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'shuffle',
+  aliases: [
+    "sfl"
+  ],
   inVoiceChannel: true,
   run: async (client, message) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(guild, "EMPTY_QUEUE"))
+
     queue.shuffle()
-    message.channel.send('Músicas embaralhadas!')
+    message.channel.send(getMessage(guild, "SONGS_SHUFFLED"))
   }
 }

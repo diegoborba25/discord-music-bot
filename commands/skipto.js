@@ -1,22 +1,24 @@
-const commandName = 'skipto'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError, getMessage } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'skipto',
+  aliases: [
+    "skpto"
+  ],
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
-    if (!args[0]) {
-      return message.channel.send(`${client.emotes.error} | Coloque a posição da música na fila!`)
-    }
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(guild, "EMPTY_QUEUE"))
+
+    if (!args[0]) return message.channel.send(getError(guild, "ENTER_POSITION"))
+
     const num = Number(args[0])
-    if (isNaN(num)) return message.channel.send(`${client.emotes.error} | Coloque um número válido!`)
+    if (isNaN(num)) return message.channel.send(getError(guild, "ENTER_VALID_NUMBER"))
+
     await client.distube.jump(message, num).then(song => {
-      message.channel.send({ content: `Skipado para: ${song.name}` })
+      message.channel.send(`${getMessage(guild, "SKIPPED_TO")} \`${song.name}\``)
     })
   }
 }

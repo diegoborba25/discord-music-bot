@@ -1,21 +1,23 @@
-const commandName = 'seek'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError, getMessage } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'seek',
+  aliases: [
+    "sk"
+  ],
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
-    if (!args[0]) {
-      return message.channel.send(`${client.emotes.error} | Coloque a posição (em segundos)!`)
-    }
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(guild, "EMPTY_QUEUE"))
+
+    if (!args[0]) return message.channel.send(getError(guild, "ENTER_TIME"))
+
     const time = Number(args[0])
-    if (isNaN(time)) return message.channel.send(`${client.emotes.error} | Coloque um número válido!`)
+    if (isNaN(time)) return message.channel.send(getError(guild, "ENTER_VALID_NUMBER"))
+
     queue.seek(time)
-    message.channel.send(`Música ajustada para o segundo: ${time}!`)
+    message.channel.send(`${getMessage(guild, "SEEKED_TO")} ${time}!`)
   }
 }

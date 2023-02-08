@@ -1,27 +1,22 @@
-const commandName = 'skip'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getMessage, getError } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'skip',
+  aliases: [
+    "skp"
+  ],
   inVoiceChannel: true,
   run: async (client, message) => {
     const queue = client.distube.getQueue(message)
+    const { guild } = message 
 
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
-
-    if (queue.songs.length === 1) {
-      client.commands.get('stop').run(client, message)
-      return
-    }
+    if (!queue) return message.channel.send(getError(guild, "EMPTY_QUEUE"))
 
     try {
       const song = await queue.skip()
-      message.channel.send(`${client.emotes.success} | Skipado! Por: ${song.user}\n`)
+      message.channel.send(`${getMessage(guild, "SKIPPED_BY", client.emotes.success)} ${song.user}\n`)
     } catch (e) {
-      message.channel.send(`${client.emotes.error} | ${e}`)
+      message.channel.send(`${getError(guild, "ERROR_OCCURRED")} ${e}`)
     }
   }
 }

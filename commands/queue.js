@@ -1,17 +1,19 @@
-const commandName = 'queue'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getMessage, getError } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'queue',
+  aliases: [
+    "q"
+  ],
   run: async (client, message) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(guild, "EMPTY_QUEUE"))
+    
     const q = queue.songs
-      .map((song, i) => `${i === 0 ? 'Tocando:' : `${i}.`} \`${song.name}\` - \`${song.formattedDuration}\``)
+      .map((song, i) => `${i === 0 ? getMessage(guild, "PLAYING") : `${i}.`} \`${song.name}\` - \`${song.formattedDuration}\``)
       .join('\n')
-    message.channel.send(`${client.emotes.queue} | **Fila do servidor**\n${q}`)
+    message.channel.send(`${getMessage(guild, "SERVER_QUEUE", client.emotes.queue)}\n${q}`)
   }
 }

@@ -1,20 +1,22 @@
-const commandName = 'resume'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError, getMessage } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'resume',
+  aliases: [
+    "unpause"
+  ],
   inVoiceChannel: true,
   run: async (client, message) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Fila vazia!`)
+    const { guild } = message
+
+    if (!queue) return message.channel.send(getError(guild, "EMPTY_QUEUE"))
+
     if (queue.paused) {
       queue.resume()
-      message.channel.send('Música despausada!')
+      message.channel.send(getMessage(guild, "RESUMED"))
     } else {
-      message.channel.send('A fila não está pausada!')
+      message.channel.send(getError(guild, "QUEUE_NOT_PAUSED"))
     }
   }
 }

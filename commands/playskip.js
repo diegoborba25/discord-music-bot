@@ -1,15 +1,15 @@
-const commandName = 'playskip'
-const commandsInfo = require('./commands-info.json')
-const commandInfo = commandsInfo[commandName]
-const commandaliases = commandInfo.aliases
+const { getError } = require("../language")
 
 module.exports = {
-  name: commandName,
-  aliases: commandaliases,
+  name: 'playskip',
+  aliases: [
+    "ps"
+  ],
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const string = args.join(' ')
-    if (!string) return message.channel.send(`${client.emotes.error} | Coloque a url ou o nome da música para pesquisa.`)
+
+    if (!string) return message.channel.send(getError(message.guild, "ENTER_A_SONG"))
     client.distube.play(message.member.voice.channel, string, {
       member: message.member,
       textChannel: message.channel,
