@@ -3,7 +3,7 @@ const { getError, getMessage } = require("../language")
 module.exports = {
   name: 'resume',
   aliases: [
-    "unpause"
+    "rsm"
   ],
   inVoiceChannel: true,
   run: async (client, message) => {

@@ -3,7 +3,7 @@ const { getMessage, getError } = require("../language")
 module.exports = {
   name: 'stop',
   aliases: [
-    "parar"
+    "stp"
   ],
   inVoiceChannel: true,
   run: async (client, message) => {

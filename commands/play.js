@@ -3,8 +3,7 @@ const { getError } = require("../language")
 module.exports = {
   name: 'play',
   aliases: [
-    "p",
-    "tocar"
+    "p"
   ],
   inVoiceChannel: true,
   run: async (client, message, args) => {
