@@ -5,7 +5,8 @@ module.exports = async () => {
     mongoose.set("strictQuery", true);
     await mongoose.connect(mongoPath, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
+        useUnifiedTopology: true,
+        ignoreUndefined: true
+    }).then(() => console.log('DataBase Connected!')).catch(err => console.log(err))
     return mongoose
 }
