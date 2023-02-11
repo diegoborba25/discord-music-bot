@@ -5,9 +5,9 @@
 
  Actually coded in portuguese, but will be changed to english soon.
 
-# Config.js
+# Config.json
 
-You must create "Config.js" to your application work.
+You must create "Config.json" to your application work.
 
 ```
 {
