@@ -11,6 +11,7 @@ You must create "Config.json" to your application work.
 {
     "prefix": "your-prefix-here",
     "token": "your-token-here",
-    "mongoPath": "your-mongo-link-here"
+    "mongoPath": "your-mongo-link-here",
+    "playing" : "playing-here"
 }
 ```
