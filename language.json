@@ -337,6 +337,10 @@
         "CURRENT_LANGUAGE":{
             "english": "Current language: `English`",
             "portuguese": "Idioma atual: `Português`"
+        },
+        "HELP_FOR":{
+            "english": "Help for:",
+            "portuguese": "Help para:"
         }
     },
     "resources": {
@@ -387,7 +391,7 @@
         "HELP_DESC": {
             "english": [
                 "Enter",
-                "help `<Command>` to more information"
+                "help `<Command>` to more information!"
             ],
             "portuguese": [
                 "Digite",

@@ -31,7 +31,16 @@ module.exports = {
         ]
       })
     } else {
-      message.channel.send(getCommandInfo(guild, args[0]).description)
+      const command = args[0].toLowerCase()
+
+      message.channel.send({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(`${getMessage(guild, "HELP_FOR")}  *${config.prefix}${command}*`)
+            .setColor('Blue')
+            .setDescription(getCommandInfo(guild, command).description)
+        ]
+      })
     }
   }
 }
